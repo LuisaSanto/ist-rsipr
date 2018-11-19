@@ -9,7 +9,7 @@ class Teleop:
         self.lastKeyPress = None
 
     def stop_listener(self):
-        self.listener.stop()
+        self.robot.listener.stop()
 
     def on_key_release(self, key):
         self.lastKeyPress = None
@@ -18,20 +18,27 @@ class Teleop:
             return False
 
     def on_key_press(self, key):
-        self.listener.stop()
+        self.robot.listener.stop()
         if self.lastKeyPress == key:
             return
+
         self.lastKeyPress = key
+
         if key == Key.up:
             self.robot.drive_wheels(50.0, 50.0)  # drive forwards
+
         elif key == Key.right:
             self.robot.drive_wheels(50.0, -50.0)  # turn right
+
         elif key == Key.left:
             self.robot.drive_wheels(-50.0, 50.0)  # turn left
+
         elif key == Key.down:
             self.robot.drive_wheels(-50.0, -50.0)  # go backwards
+
         elif key == KeyCode.from_char('r'):
             self.robot.move_lift(1.0)  # raise lift
+
         elif key == KeyCode.from_char('t'):
             self.robot.move_lift(-1.0)  # lower lift
 

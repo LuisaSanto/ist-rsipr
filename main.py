@@ -9,6 +9,7 @@ else:
     from lists import *
     from display import *
     from teleop import *
+    from manage_emotions import *
 
 
 def tic_tac_toe():
@@ -20,7 +21,7 @@ def controller():
 
 
 def display_emotions():
-    print("In display_emotions")
+    cozmo.run_program(cozmo_manage_emotion)
 
 
 def reaction():
@@ -36,6 +37,7 @@ execution_modes = {
 
 
 def main():
+    global cmd
     os.system("tput reset")
 
     while True:
