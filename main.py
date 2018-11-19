@@ -4,16 +4,17 @@ if sys.version_info < (3, 0):
 	sys.stdout.write("DENIED: requires Python 3.x\n")
 	sys.exit(1)
 else:
-	import numpy as np
+	import cozmo as cozmo
 
 from lists import *
 from display import *
+from teleop import *
 
 def tic_tac_toe():
 	print("In tic tac toe")
 
 def controller():
-	print("In controller")
+	cozmo.run_program(Controller)
 
 def display_emotions():
 	print("In display_emotions")
