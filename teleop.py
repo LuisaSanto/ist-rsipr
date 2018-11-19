@@ -1,13 +1,14 @@
 from pynput.keyboard import Key, KeyCode, Listener, Controller
 import cozmo as cozmo
 
-class teleop:
+
+class Teleop:
     def __init__(self, robot):
         self.robot = robot
         self.keyboard = Controller()
         self.lastKeyPress = None
 
-    def stopListener(self):
+    def stop_listener(self):
         self.listener.stop()
 
     def on_key_release(self, key):
@@ -21,25 +22,25 @@ class teleop:
         if self.lastKeyPress == key:
             return
         self.lastKeyPress = key
-        #drive_wheel_motors(l_wheel_sporwarded, r_wheelspeed, l_wheel_acc=None, r_wheel_acc=None)
         if key == Key.up:
-            self.robot.drive_wheels(50.0, 50.0)  #drive forwards
+            self.robot.drive_wheels(50.0, 50.0)  # drive forwards
         elif key == Key.right:
-            self.robot.drive_wheels(50.0, -50.0)  #turn right
+            self.robot.drive_wheels(50.0, -50.0)  # turn right
         elif key == Key.left:
-            self.robot.drive_wheels(-50.0, 50.0)  #turn left
+            self.robot.drive_wheels(-50.0, 50.0)  # turn left
         elif key == Key.down:
-            self.robot.drive_wheels(-50.0, -50.0)  #go backwards
-        elif key== KeyCode.from_char('r'):
-            self.robot.move_lift(1.0) #raise lift
+            self.robot.drive_wheels(-50.0, -50.0)  # go backwards
+        elif key == KeyCode.from_char('r'):
+            self.robot.move_lift(1.0)  # raise lift
         elif key == KeyCode.from_char('t'):
-            self.robot.move_lift(-1.0) #lower lift
+            self.robot.move_lift(-1.0)  # lower lift
 
-    def Controller(robot: cozmo.robot.Robot):
-        teleop = teleop(robot)
-        print("press esc to exit")
-        print("use arrow keys to control the robot")
-        print("R will raise the lift and T lower raise it")
-        print("Happy Driving!")
-        with Listener(on_release = on_key_release, on_press = on_key_press) as listener:
-           listener.join()
+
+def cozmo_controller(robot: cozmo.robot.Robot):
+    cozmo_robot = Teleop(robot)
+    print("press esc to exit")
+    print("use arrow keys to control the robot")
+    print("R will raise the lift and T lower raise it")
+    print("Happy Driving!")
+    with Listener(on_release=cozmo_robot.on_key_release, on_press=cozmo_robot.on_key_press) as cozmo_robot.listener:
+        cozmo_robot.listener.join()
