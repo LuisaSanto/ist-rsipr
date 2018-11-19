@@ -24,15 +24,10 @@ def display_emotions():
     cozmo.run_program(cozmo_manage_emotion)
 
 
-def reaction():
-    print("In reaction")
-
-
 execution_modes = {
-    "1": [tic_tac_toe, "Play tic tac toe"],
+    "1": [tic_tac_toe, "Play game"],
     "2": [controller, "Controller"],
     "3": [display_emotions, "Display Emotions"],
-    "4": [reaction, "Reaction to speak"],
 }
 
 
